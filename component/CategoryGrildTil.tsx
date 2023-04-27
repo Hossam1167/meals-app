@@ -10,7 +10,6 @@ const styles = StyleSheet.create({
     elevation: 4,
     backgroundColor: "white",
     shadowColor: "black",
-    opacity: 0.25,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 8,
     overflow: Platform.OS === "android" ? "hidden" : "visible",
@@ -37,8 +36,13 @@ const styles = StyleSheet.create({
 interface categoryGridTilProps {
   title: string;
   color: string;
+  onPressFunction: () => void;
 }
-const CategoryGrildTil = ({ title, color }: categoryGridTilProps) => {
+const CategoryGrildTil = ({
+  title,
+  color,
+  onPressFunction,
+}: categoryGridTilProps) => {
   return (
     <View style={styles.gridItem}>
       <Pressable
@@ -47,6 +51,7 @@ const CategoryGrildTil = ({ title, color }: categoryGridTilProps) => {
           styles.buttonStyle,
           pressed ? styles.buttonPressed : null,
         ]}
+        onPress={onPressFunction}
       >
         <View style={[styles.innerContanier, { backgroundColor: color }]}>
           <Text style={styles.titleStyle}>{title}</Text>
