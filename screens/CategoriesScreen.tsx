@@ -1,8 +1,18 @@
 import { View, Text, StyleSheet, FlatList } from "react-native";
 import { CATEGORIES } from "../data/dummy-data";
 import CategoryGrildTil from "../component/CategoryGrildTil";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
-const CategoriesScreen = () => {
+type RootStackParamList = {
+  MealsOverView: undefined;
+};
+
+type categoriesScreenProps = NativeStackScreenProps<RootStackParamList>;
+
+const CategoriesScreen = ({ navigation }: categoriesScreenProps) => {
+  const handelOnPress = () => {
+    navigation.navigate("MealsOverView");
+  };
   return (
     <FlatList
       numColumns={2}
@@ -12,6 +22,7 @@ const CategoriesScreen = () => {
         <CategoryGrildTil
           title={category.item.title}
           color={category.item.color}
+          onPressFunction={handelOnPress}
         />
       )}
     >
